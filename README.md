@@ -1,7 +1,3 @@
-Claro, Camilo! Aqui está a versão atualizada do README com as informações corretas:
-
----
-
 # krakend-poc
 
 Este repositório contém provas de conceito (PoCs) que utilizam o KrakenD como API Gateway e Back-end For Front-end (BFF), integrando com o Keycloak para autenticação e autorização.
