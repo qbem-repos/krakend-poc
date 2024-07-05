@@ -1,0 +1,7 @@
+### Get user information
+GET http://localhost:8080/users/1
+Accept: application/json
+
+### Get user posts
+GET http://localhost:8080/posts/1
+Accept: application/json
