@@ -46,7 +46,7 @@ Utilizado para gerenciar autenticação e autorização dos usuários que acessa
 1. **Clone o repositório**:
 
     ```bash
-    git clone <URL do repositório>
+    git clone krakend-poc
     cd krakend-poc
     ```
 
