@@ -1,0 +1,47 @@
+{
+  "realm": "krakend",
+  "enabled": true,
+  "users": [
+    {
+      "username": "duck",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "quaquaqua"
+        }
+      ],
+      "realmRoles": ["user"]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "krakend-client",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "redirectUris": [
+        "*"
+      ],
+      "publicClient": false,
+      "secret": "krakend",
+      "directAccessGrantsEnabled": true,
+      "bearerOnly": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "serviceAccountsEnabled": true,
+      "defaultRoles": ["user"]
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "user",
+        "description": "User"
+      },
+      {
+        "name": "post",
+        "description": "Post"
+      }
+    ]
+  }
+}

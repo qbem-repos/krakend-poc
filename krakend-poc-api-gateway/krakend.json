@@ -1,0 +1,97 @@
+{
+  "version": 3,
+  "name": "KrakenD - API Gateway Sample",
+  "port": 8080,
+  "timeout": "3000ms",
+  "extra_config": {
+    "router": {
+      "disable_gzip": false
+    },
+    "github_com/devopsfaith/krakend-cors": {
+      "allow_origins": ["*"],
+      "allow_methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      "allow_headers": ["Content-Type", "Authorization"],
+      "expose_headers": ["Content-Length"],
+      "max_age": "3600",
+      "allow_credentials": true
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/v1/posts",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "encoding": "json",
+          "url_pattern": "/posts",
+          "sd": "static",
+          "method": "POST",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v1/posts/{id}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "encoding": "json",
+          "url_pattern": "/posts/{id}",
+          "sd": "static",
+          "method": "PUT",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v1/posts/{id}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "encoding": "json",
+          "url_pattern": "/posts/{id}",
+          "sd": "static",
+          "method": "DELETE",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v1/posts",
+      "method": "GET",
+      "output_encoding": "negotiate",
+      "backend": [
+        {
+          "url_pattern": "/posts",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com"
+          ],
+          "extra_config": {
+            "qos/http-cache": {
+              "shared": true
+            }
+          },
+          "is_collection": true
+        }
+      ]
+    }
+  ],
+  "output_encoding": "negotiate",
+  "debug_endpoint": true,
+  "echo_endpoint": true,
+  "cache_ttl": "300ms",
+  "disable_rest": true,
+  "sequential_start": true
+}

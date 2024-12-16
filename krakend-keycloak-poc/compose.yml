@@ -1,0 +1,24 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:16.1.1
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: h2
+      KEYCLOAK_IMPORT: /opt/jboss/keycloak/realms/realm-export.json
+    ports:
+      - "9090:8080"
+    volumes:
+      - ./realm-export.json:/opt/jboss/keycloak/realms/realm-export.json
+    restart: always
+
+  krakend:
+    image: devopsfaith/krakend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./krakend.json:/etc/krakend/krakend.json
+    depends_on:
+      - keycloak
+    environment:
+      FC_ENABLE: 1
